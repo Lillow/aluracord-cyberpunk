@@ -1,6 +1,7 @@
 function GlobalStyle() {
    return (
       <style global jsx>{`
+         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
          * {
             margin: 0;
             padding: 0;
@@ -8,7 +9,7 @@ function GlobalStyle() {
             list-style: none;
          }
          body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: 'Press Start 2P', cursive;
          }
          /* App fit Height */
          html,

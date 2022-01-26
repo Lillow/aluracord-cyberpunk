@@ -10,9 +10,11 @@ function Titulo(props) {
          <Tag>{props.children}</Tag>
          <style jsx>{`
             ${Tag} {
-               color: ${appConfig.theme.colors.neutrals['000']};
+               color: ${appConfig.theme.colors.neutrals['200']};
                font-size: 24px;
                font-weight: 600;
+               line-height: 1.5;
+               margin-bottom: 20px;
             }
          `}</style>
       </>
@@ -44,9 +46,9 @@ export default function PaginaInicial() {
                display: 'flex',
                alignItems: 'center',
                justifyContent: 'center',
-               backgroundColor: appConfig.theme.colors.primary[500],
-               backgroundImage:
-                  'url(https://virtualbackgrounds.site/wp-content/uploads/2020/08/the-matrix-digital-rain.jpg)',
+               backgroundColor: appConfig.theme.colors.primary[300],
+               backgroundImage: 'url(https://i.imgur.com/3VpNAJs.gif)',
+
                backgroundRepeat: 'no-repeat',
                backgroundSize: 'cover',
                backgroundBlendMode: 'multiply'
@@ -67,7 +69,8 @@ export default function PaginaInicial() {
                   padding: '32px',
                   margin: '16px',
                   boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-                  backgroundColor: appConfig.theme.colors.neutrals[700]
+                  backgroundColor: appConfig.theme.colors.primary[900],
+                  opacity: '0.9'
                }}
             >
                {/* Formulário */}
@@ -88,11 +91,13 @@ export default function PaginaInicial() {
                      marginBottom: '32px'
                   }}
                >
-                  <Titulo tag="h2">Boas vindas de volta!</Titulo>
+                  <Titulo tag="h2">
+                     Boas vindas <span>Novamente!</span>
+                  </Titulo>
                   <Text
                      variant="body3"
                      styleSheet={{
-                        marginBottom: '32px',
+                        marginBottom: '10px',
                         color: appConfig.theme.colors.neutrals[300]
                      }}
                   >
@@ -140,7 +145,7 @@ export default function PaginaInicial() {
                      label="Entrar"
                      fullWidth
                      buttonColors={{
-                        contrastColor: appConfig.theme.colors.neutrals['000'],
+                        contrastColor: appConfig.theme.colors.neutrals['100'],
                         mainColor: appConfig.theme.colors.primary[500],
                         mainColorLight: appConfig.theme.colors.primary[400],
                         mainColorStrong: appConfig.theme.colors.primary[600]
@@ -170,7 +175,11 @@ export default function PaginaInicial() {
                         borderRadius: '50%',
                         marginBottom: '16px'
                      }}
-                     src={`https://github.com/${username}.png`}
+                     src={
+                        username.length > 2
+                           ? `https://github.com/${username}.png`
+                           : `https://i.imgur.com/mf4gWmN.png`
+                     }
                   />
                   <Text
                      variant="body4"
