@@ -10,7 +10,7 @@ function Titulo(props) {
          <Tag>{props.children}</Tag>
          <style jsx>{`
             ${Tag} {
-               color: ${appConfig.theme.colors.neutrals['200']};
+               color: ${appConfig.theme.colors.primary['400']};
                font-size: 24px;
                font-weight: 600;
                line-height: 1.5;
@@ -172,13 +172,13 @@ export default function PaginaInicial() {
                >
                   <Image
                      styleSheet={{
-                        borderRadius: '50%',
+                        borderRadius: '24%',
                         marginBottom: '16px'
                      }}
                      src={
                         username.length > 2
                            ? `https://github.com/${username}.png`
-                           : `https://i.imgur.com/mf4gWmN.png`
+                           : `https://i.imgur.com/C0Y6DRB.png`
                      }
                   />
                   <Text
