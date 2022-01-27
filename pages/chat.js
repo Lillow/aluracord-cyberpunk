@@ -1,4 +1,4 @@
-import { Box, Text, TextField, Image, Button } from '@skynexui/components'
+import { Box, Text, TextField, Image, Button, Icon } from '@skynexui/components'
 import React from 'react'
 import appConfig from '../config.json'
 
@@ -26,6 +26,12 @@ export default function ChatPage() {
 
       setListaDeMensagens([mensagem, ...listaDeMensagens])
       setMensagem('')
+   }
+
+   const DeletarMensagem = id => {
+      setListaDeMensagens(old => {
+         return old.filter(item => item.id !== id)
+      })
    }
 
    return (
@@ -69,7 +75,10 @@ export default function ChatPage() {
                   padding: '16px'
                }}
             >
-               <MessageList mensagens={listaDeMensagens} />
+               <MessageList
+                  mensagens={listaDeMensagens}
+                  onDelete={DeletarMensagem}
+               />
                {/* {listaDeMensagens.map((mensagemAtual) => {
                         return (
                             <li key={mensagemAtual.id}>
@@ -91,7 +100,7 @@ export default function ChatPage() {
                         setMensagem(valor)
                      }}
                      onKeyPress={event => {
-                        console.log
+                        console.log()
                         if (event.key === 'Enter') {
                            event.preventDefault()
                            handleNovaMensagem(mensagem)
@@ -156,8 +165,7 @@ function Header() {
    )
 }
 
-function MessageList(props) {
-   console.log(props)
+function MessageList({ mensagens, onDelete = () => null }) {
    return (
       <Box
          tag="ul"
@@ -171,51 +179,80 @@ function MessageList(props) {
             marginBottom: '16px'
          }}
       >
-         {props.mensagens.map(mensagem => {
-            return (
-               <Text
-                  key={mensagem.id}
-                  tag="li"
+         {mensagens.map(mensagem => (
+            <Text
+               tag="li"
+               className="message"
+               key={mensagem.id}
+               styleSheet={{
+                  borderRadius: '5px',
+                  padding: '6px',
+                  marginBottom: '12px',
+                  hover: {
+                     backgroundColor: appConfig.theme.colors.primary[700]
+                  }
+               }}
+            >
+               <Box
                   styleSheet={{
-                     borderRadius: '5px',
-                     padding: '6px',
-                     marginBottom: '12px',
-                     hover: {
-                        backgroundColor: appConfig.theme.colors.neutrals[700]
-                     }
+                     display: 'flex',
+                     alignItems: 'baseline',
+                     marginBottom: '8px'
                   }}
                >
-                  <Box
+                  <Image
                      styleSheet={{
-                        marginBottom: '8px'
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '50%',
+                        display: 'inline-block',
+                        marginRight: '8px'
                      }}
+                     src={`https://github.com/Lillow.png`}
+                  />
+
+                  <Text tag="strong">{mensagem.de}</Text>
+
+                  <Text
+                     styleSheet={{
+                        fontSize: '10px',
+                        marginLeft: '8px',
+                        color: appConfig.theme.colors.neutrals[300]
+                     }}
+                     tag="span"
                   >
-                     <Image
-                        styleSheet={{
-                           width: '20px',
-                           height: '20px',
-                           borderRadius: '50%',
-                           display: 'inline-block',
-                           marginRight: '8px'
-                        }}
-                        src={`https://github.com/Lillow.png`}
-                     />
-                     <Text tag="strong">{mensagem.de}</Text>
-                     <Text
-                        styleSheet={{
-                           fontSize: '10px',
-                           marginLeft: '8px',
-                           color: appConfig.theme.colors.neutrals[300]
-                        }}
-                        tag="span"
-                     >
-                        {new Date().toLocaleDateString()}
-                     </Text>
-                  </Box>
+                     {new Date().toLocaleDateString()}
+                  </Text>
+                  <Icon
+                     name="FaTrash"
+                     className="delete-button"
+                     onClick={() => onDelete(mensagem.id)}
+                     styleSheet={{
+                        fontSize: '1.2rem',
+                        alignSelf: 'center',
+                        marginLeft: 'auto',
+                        cursor: 'pointer',
+                        display: 'none'
+                     }}
+                  />
+               </Box>
+               <Box
+                  as="p"
+                  styleSheet={{
+                     overflowWrap: 'break-word',
+                     textIndent: '1rem',
+                     paddingLeft: '0.7rem'
+                  }}
+               >
                   {mensagem.texto}
-               </Text>
-            )
-         })}
+               </Box>
+               <style>{`
+						.message:hover > div .delete-button {
+							display: block;
+						}
+					`}</style>
+            </Text>
+         ))}
       </Box>
    )
 }
