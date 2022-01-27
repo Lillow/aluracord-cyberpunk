@@ -35,9 +35,23 @@ function Titulo(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
-   // const username = 'Lillow'
-   const [username, setUsername] = React.useState('')
+   // const userName = 'Lillow'
+   const [userName, setUserName] = React.useState('')
+   const [userLocation, setLocation] = React.useState('')
+   const [name, setName] = React.useState('')
    const roteamento = useRouter()
+
+   const gitHubDadosAPI = fetch(`https://api.github.com/users/${userName}`)
+      .then(function (response) {
+         return response.json() //convert the http format for json
+      })
+      .then(function (jsonResponse) {
+         let location = jsonResponse.location
+         let name = jsonResponse.name
+         setLocation(location)
+         setName(name)
+         return jsonResponse
+      })
 
    return (
       <>
@@ -65,12 +79,12 @@ export default function PaginaInicial() {
                   },
                   width: '100%',
                   maxWidth: '700px',
-                  borderRadius: '12px',
+                  borderRadius: '30px',
                   padding: '32px',
                   margin: '16px',
                   boxShadow: '0 2px 10px 0 rgb(0 0 0 / 20%)',
-                  backgroundColor: appConfig.theme.colors.primary[900],
-                  opacity: '0.9'
+                  backgroundColor: appConfig.theme.colors.primary[950],
+                  backgroundBlendMode: 'screen'
                }}
             >
                {/* Formulário */}
@@ -113,20 +127,21 @@ export default function PaginaInicial() {
                         const valor = event.target.value
                         // Trocar o valor da variável
                         // através do React e avise quem precisa
-                        setUsername(valor)
+                        setUserName(valor)
                      }}
                   /> */}
 
                   <TextField
-                     value={username}
-                     value={username}
+                     placeholder="Login"
+                     value={userName}
+                     value={userName}
                      onChange={function (event) {
                         console.log('Usuário digitou', event.target.value)
                         // Onde ta o valor?
                         const valor = event.target.value
                         // Trocar o valor da variável
                         // através do React e avise quem precisa
-                        setUsername(valor)
+                        setUserName(valor)
                      }}
                      fullWidth
                      textFieldColors={{
@@ -167,17 +182,18 @@ export default function PaginaInicial() {
                      borderColor: appConfig.theme.colors.neutrals[999],
                      borderRadius: '10px',
                      flex: 1,
-                     minHeight: '240px'
+                     minHeight: '240px',
+                     opacity: '0.99'
                   }}
                >
                   <Image
                      styleSheet={{
-                        borderRadius: '24%',
+                        borderRadius: '20%',
                         marginBottom: '16px'
                      }}
                      src={
-                        username.length > 2
-                           ? `https://github.com/${username}.png`
+                        userName.length > 2
+                           ? `https://github.com/${userName}.png`
                            : `https://i.imgur.com/C0Y6DRB.png`
                      }
                   />
@@ -185,12 +201,37 @@ export default function PaginaInicial() {
                      variant="body4"
                      styleSheet={{
                         color: appConfig.theme.colors.neutrals[200],
-                        backgroundColor: appConfig.theme.colors.neutrals[900],
+                        backgroundColor: appConfig.theme.colors.primary[500],
                         padding: '3px 10px',
-                        borderRadius: '1000px'
+                        borderRadius: '1000px',
+                        marginBottom: '5px'
                      }}
                   >
-                     {username}
+                     {userName}
+                  </Text>
+                  <Text
+                     variant="body4"
+                     styleSheet={{
+                        color: appConfig.theme.colors.neutrals[200],
+                        backgroundColor: appConfig.theme.colors.primary[500],
+                        padding: '3px 10px',
+                        borderRadius: '1000px',
+                        marginBottom: '5px'
+                     }}
+                  >
+                     {userLocation}
+                  </Text>
+                  <Text
+                     variant="body4"
+                     styleSheet={{
+                        color: appConfig.theme.colors.neutrals[200],
+                        backgroundColor: appConfig.theme.colors.primary[500],
+                        padding: '3px 10px',
+                        borderRadius: '1000px',
+                        marginBottom: '5px'
+                     }}
+                  >
+                     {name}
                   </Text>
                </Box>
                {/* Photo Area */}
