@@ -48,9 +48,11 @@ export default function PaginaInicial() {
       .then(function (jsonResponse) {
          let location = jsonResponse.location
          let name = jsonResponse.name
-         setLocation(location)
-         setName(name)
-         return jsonResponse
+         if (userName.length > 2) {
+            setLocation(location)
+            setName(name)
+            return jsonResponse
+         }
       })
 
    return (
@@ -134,7 +136,6 @@ export default function PaginaInicial() {
                   <TextField
                      placeholder="Login"
                      value={userName}
-                     value={userName}
                      onChange={function (event) {
                         console.log('Usuário digitou', event.target.value)
                         // Onde ta o valor?
@@ -161,8 +162,8 @@ export default function PaginaInicial() {
                      fullWidth
                      buttonColors={{
                         contrastColor: appConfig.theme.colors.neutrals['100'],
-                        mainColor: appConfig.theme.colors.primary[500],
-                        mainColorLight: appConfig.theme.colors.primary[400],
+                        mainColor: appConfig.theme.colors.primary[400],
+                        mainColorLight: appConfig.theme.colors.primary[300],
                         mainColorStrong: appConfig.theme.colors.primary[600]
                      }}
                   />
@@ -209,18 +210,7 @@ export default function PaginaInicial() {
                   >
                      {userName}
                   </Text>
-                  <Text
-                     variant="body4"
-                     styleSheet={{
-                        color: appConfig.theme.colors.neutrals[200],
-                        backgroundColor: appConfig.theme.colors.primary[500],
-                        padding: '3px 10px',
-                        borderRadius: '1000px',
-                        marginBottom: '5px'
-                     }}
-                  >
-                     {userLocation}
-                  </Text>
+
                   <Text
                      variant="body4"
                      styleSheet={{
@@ -232,6 +222,18 @@ export default function PaginaInicial() {
                      }}
                   >
                      {name}
+                  </Text>
+                  <Text
+                     variant="body4"
+                     styleSheet={{
+                        color: appConfig.theme.colors.neutrals[200],
+                        backgroundColor: appConfig.theme.colors.primary[500],
+                        padding: '3px 10px',
+                        borderRadius: '1000px',
+                        marginBottom: '5px'
+                     }}
+                  >
+                     {userLocation}
                   </Text>
                </Box>
                {/* Photo Area */}

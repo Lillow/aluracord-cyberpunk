@@ -63,7 +63,7 @@ export default function ChatPage() {
                   display: 'flex',
                   flex: 1,
                   height: '80%',
-                  backgroundColor: appConfig.theme.colors.primary[800],
+                  backgroundColor: appConfig.theme.colors.neutrals[700],
                   flexDirection: 'column',
                   borderRadius: '24px',
                   padding: '16px'
@@ -81,7 +81,7 @@ export default function ChatPage() {
                   as="form"
                   styleSheet={{
                      display: 'flex',
-                     alignItems: 'center'
+                     alignItems: 'stretch'
                   }}
                >
                   <TextField
@@ -91,6 +91,7 @@ export default function ChatPage() {
                         setMensagem(valor)
                      }}
                      onKeyPress={event => {
+                        console.log
                         if (event.key === 'Enter') {
                            event.preventDefault()
                            handleNovaMensagem(mensagem)
@@ -106,7 +107,22 @@ export default function ChatPage() {
                         padding: '6px 8px',
                         backgroundColor: appConfig.theme.colors.neutrals[800],
                         marginRight: '12px',
-                        color: appConfig.theme.colors.neutrals[200]
+                        color: appConfig.theme.colors.neutrals[200],
+                        marginBottom: '-10px'
+                     }}
+                  />
+                  <Button
+                     onClick={event => {
+                        event.preventDefault()
+                        handleNovaMensagem(mensagem)
+                     }}
+                     label="Enviar"
+                     type="submit"
+                     buttonColors={{
+                        mainColor: appConfig.theme.colors.primary[400],
+                        mainColorLight: appConfig.theme.colors.primary[300],
+                        mainColorStrong: appConfig.theme.colors.primary[600],
+                        contrastColor: appConfig.theme.colors.neutrals['000']
                      }}
                   />
                </Box>
@@ -149,6 +165,7 @@ function MessageList(props) {
             overflow: 'scroll',
             display: 'flex',
             flexDirection: 'column-reverse',
+            justifyContent: 'end',
             flex: 1,
             color: appConfig.theme.colors.neutrals['000'],
             marginBottom: '16px'
