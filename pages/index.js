@@ -35,20 +35,20 @@ function Titulo(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
-    // const userName = 'Lillow'
-    const [userName, setUserName] = React.useState('');
+    // const username = 'Lillow'
+    const [username, setUsername] = React.useState('');
     const [userLocation, setLocation] = React.useState('');
     const [name, setName] = React.useState('');
     const roteamento = useRouter();
 
-    const gitHubDadosAPI = fetch(`https://api.github.com/users/${userName}`)
+    const gitHubDadosAPI = fetch(`https://api.github.com/users/${username}`)
         .then(function (response) {
             return response.json(); //convert the http format for json
         })
         .then(function (jsonResponse) {
             let location = jsonResponse.location;
             let name = jsonResponse.name;
-            if (userName.length > 2) {
+            if (username.length > 2) {
                 setLocation(location);
                 setName(name);
                 return jsonResponse;
@@ -94,7 +94,9 @@ export default function PaginaInicial() {
                         as="form"
                         onSubmit={function (infosDoEvento) {
                             infosDoEvento.preventDefault();
-                            roteamento.push('/chat');
+                            console.log('Alguém submeteu o form');
+                            // roteamento.push('/chat?username=' + username);
+                            roteamento.push(`/chat?username=${username}`);
                             // window.location.href = '/chat'
                         }}
                         styleSheet={{
@@ -120,22 +122,9 @@ export default function PaginaInicial() {
                             {appConfig.name}
                         </Text>
 
-                        {/* <input
-                     type="text"
-                     
-                     onChange={function (event) {
-                        console.log('Usuário digitou', event.target.value)
-                        // Onde ta o valor?
-                        const valor = event.target.value
-                        // Trocar o valor da variável
-                        // através do React e avise quem precisa
-                        setUserName(valor)
-                     }}
-                  /> */}
-
                         <TextField
                             placeholder="Login"
-                            value={userName}
+                            value={username}
                             onChange={function (event) {
                                 console.log(
                                     'Usuário digitou',
@@ -145,7 +134,7 @@ export default function PaginaInicial() {
                                 const valor = event.target.value;
                                 // Trocar o valor da variável
                                 // através do React e avise quem precisa
-                                setUserName(valor);
+                                setUsername(valor);
                             }}
                             fullWidth
                             textFieldColors={{
@@ -203,8 +192,8 @@ export default function PaginaInicial() {
                                 marginBottom: '16px'
                             }}
                             src={
-                                userName.length > 2
-                                    ? `https://github.com/${userName}.png`
+                                username.length > 2
+                                    ? `https://github.com/${username}.png`
                                     : `https://i.imgur.com/C0Y6DRB.png`
                             }
                         />
@@ -219,7 +208,7 @@ export default function PaginaInicial() {
                                 marginBottom: '5px'
                             }}
                         >
-                            {userName}
+                            {username}
                         </Text>
 
                         <Text
