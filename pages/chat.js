@@ -57,7 +57,7 @@ export default function ChatPage() {
 
     function handleNovaMensagem(novaMensagem) {
         const mensagem = {
-            id: listaDeMensagens.length + 1,
+            // id: listaDeMensagens.length + 1,
             de: usuarioLogado,
             texto: novaMensagem
         };
@@ -120,6 +120,7 @@ export default function ChatPage() {
                     <MessageList
                         mensagens={listaDeMensagens}
                         onDelete={DeletarMensagem}
+                        usuarioLogado={usuarioLogado}
                     />
 
                     <Box
@@ -150,7 +151,13 @@ export default function ChatPage() {
                                 console.log();
                                 if (event.key === 'Enter') {
                                     event.preventDefault();
-                                    handleNovaMensagem(mensagem);
+                                    if (mensagem.length > 0) {
+                                        handleNovaMensagem(mensagem);
+                                    } else {
+                                        alert(
+                                            'sua mensagem não pode ser vazia'
+                                        );
+                                    }
                                 }
                             }}
                             placeholder="Insira sua mensagem aqui..."
@@ -168,21 +175,13 @@ export default function ChatPage() {
                                 marginBottom: '-10px'
                             }}
                         />
-                        {/* Callback */}
-                        <ButtonSendSticker
-                            onStickerClick={(sticker) => {
-                                console.log(
-                                    '[USANDO O COMPONENTE] Salva esse sticker no banco de dados',
-                                    sticker
-                                );
-                                handleNovaMensagem(`:sticker: ${sticker}`);
-                            }}
-                        />
 
                         <Button
                             onClick={(event) => {
                                 event.preventDefault();
-                                handleNovaMensagem(mensagem);
+                                mensagem.length > 0
+                                    ? handleNovaMensagem(mensagem)
+                                    : alert('sua mensagem não pode ser vazia');
                             }}
                             label="Enviar"
                             type="submit"
@@ -194,6 +193,16 @@ export default function ChatPage() {
                                     appConfig.theme.colors.primary[600],
                                 contrastColor:
                                     appConfig.theme.colors.neutrals['000']
+                            }}
+                        />
+                        {/* Callback */}
+                        <ButtonSendSticker
+                            onStickerClick={(sticker) => {
+                                console.log(
+                                    '[USANDO O COMPONENTE] Salva esse sticker no banco de dados',
+                                    sticker
+                                );
+                                handleNovaMensagem(`:sticker: ${sticker}`);
                             }}
                         />
                     </Box>
@@ -228,7 +237,7 @@ function Header() {
     );
 }
 
-function MessageList({ mensagens, onDelete = () => null }) {
+function MessageList({ usuarioLogado, mensagens, onDelete = () => null }) {
     return (
         <Box
             tag="ul"
@@ -273,9 +282,7 @@ function MessageList({ mensagens, onDelete = () => null }) {
                             }}
                             src={`https://github.com/${mensagem.de}.png`}
                         />
-
                         <Text tag="strong">{mensagem.de}</Text>
-
                         <Text
                             styleSheet={{
                                 fontSize: '10px',
@@ -286,10 +293,26 @@ function MessageList({ mensagens, onDelete = () => null }) {
                         >
                             {new Date().toLocaleDateString()}
                         </Text>
+
                         <Icon
                             name="FaTrash"
                             className="delete-button"
-                            onClick={() => onDelete(mensagem.id)}
+                            onClick={() => {
+                                console.log('quem clicou foi:', usuarioLogado);
+                                if (usuarioLogado == mensagem.de) {
+                                    onDelete(mensagem.id);
+
+                                    supabaseClient
+                                        .from('tb_mensagens')
+                                        .delete([mensagem])
+                                        .match({ id: `${mensagem.id}` })
+                                        .then(() => {});
+                                } else {
+                                    alert(
+                                        '"Você só pode apagar suas proprias mensagens!!"'
+                                    );
+                                }
+                            }}
                             styleSheet={{
                                 fontSize: '1.2rem',
                                 alignSelf: 'center',

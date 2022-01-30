@@ -35,7 +35,6 @@ function Titulo(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
-    // const username = 'Lillow'
     const [username, setUsername] = React.useState('');
     const [userLocation, setLocation] = React.useState('');
     const [name, setName] = React.useState('');
@@ -52,6 +51,7 @@ export default function PaginaInicial() {
                 setLocation(location);
                 setName(name);
                 return jsonResponse;
+            } else {
             }
         });
 
@@ -154,6 +154,7 @@ export default function PaginaInicial() {
                         <Button
                             type="submit"
                             label="Entrar"
+                            disabled=""
                             fullWidth
                             buttonColors={{
                                 contrastColor:
