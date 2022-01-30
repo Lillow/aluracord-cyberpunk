@@ -35,6 +35,7 @@ function Titulo(props) {
 // export default HomePage
 
 export default function PaginaInicial() {
+    // const username = 'Lillow'
     const [username, setUsername] = React.useState('');
     const [userLocation, setLocation] = React.useState('');
     const [name, setName] = React.useState('');
@@ -51,7 +52,6 @@ export default function PaginaInicial() {
                 setLocation(location);
                 setName(name);
                 return jsonResponse;
-            } else {
             }
         });
 
@@ -96,9 +96,13 @@ export default function PaginaInicial() {
                             infosDoEvento.preventDefault();
                             console.log('Alguém submeteu o form');
                             // roteamento.push('/chat?username=' + username);
-                            username.length > 2
-                                ? roteamento.push(`/chat?username=${username}`)
-                                : alert('Login inválido!');
+                            {
+                                username.length > 2 &&
+                                    roteamento.push(
+                                        `/chat?username=${username}`
+                                    );
+                            }
+
                             // window.location.href = '/chat'
                         }}
                         styleSheet={{
@@ -153,7 +157,20 @@ export default function PaginaInicial() {
                             }}
                         />
 
+                        {username.length <= 2 && (
+                            <Text
+                                styleSheet={{
+                                    marginBottom: '10px',
+                                    color: appConfig.theme.colors.neutrals[400],
+                                    fontFamily: 'Play'
+                                }}
+                            >
+                                Digite mais que 2 caracteres
+                            </Text>
+                        )}
+
                         <Button
+                            disabled={username.length <= 2}
                             type="submit"
                             label="Entrar"
                             fullWidth
