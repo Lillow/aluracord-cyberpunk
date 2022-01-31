@@ -164,6 +164,7 @@ export default function ChatPage() {
                             type="textarea"
                             styleSheet={{
                                 width: '100%',
+                                height: '50px',
                                 border: '0',
                                 resize: 'none',
                                 borderRadius: '5px',
@@ -177,22 +178,31 @@ export default function ChatPage() {
                         />
 
                         <Button
+                            disabled={mensagem.length == 0}
                             onClick={(event) => {
                                 event.preventDefault();
-                                mensagem.length > 0
-                                    ? handleNovaMensagem(mensagem)
-                                    : alert('sua mensagem não pode ser vazia');
+                                mensagem.length > 0 &&
+                                    handleNovaMensagem(mensagem);
                             }}
-                            label="Enviar"
-                            type="submit"
+                            iconName="paperPlane"
+                            rounded="none"
                             buttonColors={{
-                                mainColor: appConfig.theme.colors.primary[400],
-                                mainColorLight:
-                                    appConfig.theme.colors.primary[300],
-                                mainColorStrong:
-                                    appConfig.theme.colors.primary[600],
-                                contrastColor:
-                                    appConfig.theme.colors.neutrals['000']
+                                contrastColor: `${appConfig.theme.colors.primary[500]}`,
+                                mainColor: `${appConfig.theme.colors.neutrals[800]}`,
+                                mainColorLight: `${appConfig.theme.colors.neutrals[600]}`,
+                                mainColorStrong: `${appConfig.theme.colors.neutrals[900]}`
+                            }}
+                            styleSheet={{
+                                borderRadius: '50%',
+                                padding: '0 3px 0 0',
+                                minWidth: '50px',
+                                minHeight: '50px',
+                                fontSize: '20px',
+                                margin: '0 8px',
+                                lineHeight: '0',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
                             }}
                         />
                         {/* Callback */}
