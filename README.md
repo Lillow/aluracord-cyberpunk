@@ -11,15 +11,18 @@ Projeto criado na Imersão React com @alura @omariosouto @peas
 ![image](https://user-images.githubusercontent.com/33943534/151734724-839d058f-2fb7-4ec8-ba34-b43679afb14a.png)
 
 ## Tecnologias:
-- Next: <img align="center" height="30" src="https://cdn.icon-icons.com/icons2/2148/PNG/512/nextjs_icon_132160.png">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-- React <img align="center" height="30" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-- Yarn (v1.22.17) <img align="center" height="30" src="https://www.pinclipart.com/picdir/big/207-2071105_0-yarn-js-logo-clipart.png">
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-- CSS in JS
-- Flexbox
-- Supabase
+
+- Nextjs <img align="center" height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg">
+ 
+- React <img align="center" height="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg">
+
+- Yarn <img align="center" height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/yarn/yarn-original-wordmark.svg">
+ 
+- JS  <img align="center" height="25" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+ 
+- SkynexUI <img align="center" height="30" src="https://avatars.githubusercontent.com/u/32174276?v=4">
+ 
+- Supabase <img align="center" height="30" src="https://avatars.githubusercontent.com/u/54469796?s=200&v=4">
 
 ## Autor
 <table>
