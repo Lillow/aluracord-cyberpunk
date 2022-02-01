@@ -1,5 +1,5 @@
-# aluracord-cyberpunk
-Projeto criado na Imersão React com @alura @omariosouto @peas
+# cybercord
+Projeto criado na Imersão React @alura com @omariosouto @peas
 
 <a href="https://aluracord-cyberpunk-lillow.vercel.app/">Clique aqui para utilizá-lo</a> 
 
