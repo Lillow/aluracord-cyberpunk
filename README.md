@@ -4,11 +4,9 @@ Projeto criado na Imersão React @alura com @omariosouto @peas
 <a href="https://aluracord-cyberpunk-lillow.vercel.app/">Clique aqui para utilizá-lo</a> 
 
 ## Tela inicial
-![image](https://user-images.githubusercontent.com/33943534/151734682-6b38be3d-b2b7-402c-915f-5fe36dbb5ff9.png)
+![login](https://github.com/Lillow/cybercord/blob/main/assets/images/reademe-1.png?raw=true)
 ## Tela do chat
-![image](https://user-images.githubusercontent.com/33943534/151734703-b54492dd-d980-4f66-9ebb-1289a2d4b034.png)
-## Stickers
-![image](https://user-images.githubusercontent.com/33943534/151734724-839d058f-2fb7-4ec8-ba34-b43679afb14a.png)
+![image](https://github.com/Lillow/cybercord/blob/main/assets/images/heademe-2.png?raw=true)
 
 ## Tecnologias:
 
