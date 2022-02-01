@@ -11,6 +11,7 @@ import appConfig from '../config.json';
 import { useRouter } from 'next/router';
 import { createClient } from '@supabase/supabase-js';
 import { ButtonSendSticker } from '../src/components/ButtonSendSticker';
+import { Loading } from '../src/components/Loading';
 
 const SUPABASE_ANON_KEY =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTY0MzQyMDQ4MCwiZXhwIjoxOTU4OTk2NDgwfQ.n_DGkhoT6fK9bUDNge7GNldfOz00ClevDRyHhdJMHBg';
@@ -117,11 +118,21 @@ export default function ChatPage() {
                         padding: '16px'
                     }}
                 >
-                    <MessageList
+                    {/* <MessageList
                         mensagens={listaDeMensagens}
                         onDelete={DeletarMensagem}
                         usuarioLogado={usuarioLogado}
-                    />
+                    /> */}
+
+                    {listaDeMensagens.length == 0 ? (
+                        <Loading />
+                    ) : (
+                        <MessageList
+                            mensagens={listaDeMensagens}
+                            onDelete={DeletarMensagem}
+                            usuarioLogado={usuarioLogado}
+                        />
+                    )}
 
                     <Box
                         as="form"
@@ -343,6 +354,7 @@ function MessageList({ usuarioLogado, mensagens, onDelete = () => null }) {
                         {/* Declarativo */}
                         {mensagem.texto.startsWith(':sticker:') ? (
                             <Image
+                                styleSheet={{ maxWidth: '9rem' }}
                                 src={mensagem.texto.replace(':sticker:', '')}
                             />
                         ) : (

@@ -45,8 +45,8 @@ export function ButtonSendSticker(props) {
                             xs: '200px',
                             sm: '290px'
                         },
-                        height: '330px',
-                        right: '30px',
+                        height: '300px',
+                        right: '40px',
                         bottom: '30px',
                         padding: '16px',
                         boxShadow:
